@@ -1,0 +1,205 @@
+ :root {
+            --rose-fuchsia:#E91E89;
+            --noir:#000000;
+            --gris-fonce:#4b4949;
+            --gris-clair: #cccccc;
+            --gris-fonce1: hsla(328, 82%, 52%, 0.5);
+            --vert-vif:#8CC63F;
+            --blanc:#FFFFFF;
+            --bleu-facebook: #3b5998;
+            --rouge-google: #dd4b39;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            background-color: #f4f6f8;
+            color: var(--gris-fonce);
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .conteneur-formulaire {
+            background-color: var(--blanc);
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 700px; /* Plus large pour la description et l'image */
+            margin: 20px;
+            box-sizing: border-box;
+        }
+
+        .entete-formulaire {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--gris-clair);
+        }
+
+        .entete-formulaire h1 {
+            color: var(--rose-fuchsia);
+            margin: 0;
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .entete-formulaire .bouton-retour {
+            background-color: var(--gris-fonce);
+            color: var(--blanc);
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .entete-formulaire .bouton-retour:hover {
+            background-color: var(--gris-fonce1);
+        }
+
+        .form-groupe {
+            margin-bottom: 20px;
+        }
+
+        .form-groupe label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--gris-fonce);
+        }
+
+        .form-groupe input[type="text"],
+        .form-groupe textarea,
+        .form-groupe select,
+        .form-groupe input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--gris-clair);
+            border-radius: 8px;
+            font-size: 1em;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-groupe textarea {
+            resize: vertical; /* Permet de redimensionner verticalement */
+            min-height: 100px;
+        }
+
+        .form-groupe input:focus,
+        .form-groupe textarea:focus,
+        .form-groupe select:focus,
+        .form-groupe input[type="file"]:focus {
+            border-color: var(--rose-fuchsia);
+            box-shadow: 0 0 0 3px rgba(233, 30, 137, 0.2);
+            outline: none;
+        }
+
+        /* Style spécifique pour l'input file */
+        .form-groupe input[type="file"] {
+            padding: 10px; /* Moins de padding pour input file */
+            line-height: normal; /* Réinitialiser le line-height */
+        }
+
+        .bouton-soumettre {
+            background-color: var(--rose-fuchsia);
+            color: var(--blanc);
+            padding: 15px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .bouton-soumettre:hover {
+            background-color: #d11a76;
+            transform: translateY(-2px);
+        }
+
+        /* Messages de notification */
+        .message {
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .message-succes {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message-erreur {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .message i {
+            font-size: 1.2em;
+        }
+
+        /* Media Queries pour la responsivité */
+        @media (max-width: 768px) {
+            .conteneur-formulaire {
+                padding: 20px 25px;
+                margin: 15px;
+            }
+            .entete-formulaire h1 {
+                font-size: 1.8em;
+            }
+            .entete-formulaire .bouton-retour {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+            .form-groupe label {
+                font-size: 0.9em;
+            }
+            .form-groupe input, .form-groupe textarea, .form-groupe select {
+                padding: 10px;
+                font-size: 0.9em;
+            }
+            .bouton-soumettre {
+                padding: 12px 20px;
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .conteneur-formulaire {
+                padding: 15px 20px;
+                margin: 10px;
+            }
+            .entete-formulaire {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            .entete-formulaire h1 {
+                font-size: 1.5em;
+            }
+            .entete-formulaire .bouton-retour {
+                width: 100%;
+                justify-content: center;
+            }
+        }

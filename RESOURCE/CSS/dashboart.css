@@ -1,0 +1,970 @@
+/* Variables CSS pour une gestion facile des couleurs et espacements */
+:root {
+    --primary-color: #E91E89; /* Chocolat - Couleur principale */
+    --secondary-color: #F8F8F8; /* Gris très clair, presque blanc - Fond des sections */
+    --accent-color: #5C4B5C; /* Une nuance de prune/violet pour accentuation légère */
+    --text-color: #333; /* Texte principal foncé */
+    --text-light-color: #666; /* Texte secondaire/léger */
+    --border-color: #ddd; /* Bordures et séparateurs */
+    --background-light: #f4f7f6; /* Arrière-plan général du contenu */
+    --success-color: #28a745; /* Vert pour succès */
+    --error-color: #dc3545; /* Rouge pour erreur/suppression */
+    --info-color: #17a2b8; /* Bleu-vert pour information/modification */
+    --warning-color: #ffc107; /* Jaune pour avertissement */
+
+    --font-family: 'Arial', sans-serif; /* Police de caractères */
+    --border-radius: 8px; /* Rayon de bordure par défaut pour les éléments */
+    --padding-base: 20px; /* Rembourrage de base pour les sections */
+    --gap-base: 20px; /* Espacement de base pour les grilles/flexbox */
+}
+
+/* Fonction pour assombrir/éclaircir une couleur (simulée, nécessite Sass/Less ou JS pour un vrai calcul) */
+/* Pour un CSS pur, vous devriez calculer et spécifier les couleurs à la main pour les états hover */
+/* Exemple pour darken(color, amount): background-color: #924a29; (darken(--primary-color, 10%)) */
+/* Exemple pour darken(#007bff, 10%): background-color: #0069d9; */
+
+
+/* Réinitialisation de base pour tous les éléments */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-light);
+    display: flex; /* Utilise Flexbox pour la mise en page principale (sidebar + contenu) */
+    min-height: 100vh; /* S'assure que le corps prend au moins toute la hauteur de la vue */
+    overflow-x: hidden; /* Empêche le débordement horizontal général */
+}
+
+/* --- Barre Latérale (Sidebar) --- */
+.barre-laterale {
+    width: 280px; /* Largeur de la barre latérale */
+    background-color: #fff;
+    color: var(--text-color);
+    padding: var(--padding-base) 0; /* Padding vertical, padding horizontal géré par les éléments internes */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05); /* Légère ombre à droite */
+    display: flex;
+    flex-direction: column;
+    position: sticky; /* Colle la barre latérale en haut lors du défilement */
+    top: 0;
+    height: 100vh; /* Prend toute la hauteur de la fenêtre */
+    overflow-y: auto; /* Permet le défilement interne si le contenu dépasse */
+    z-index: 1000; /* Assure qu'elle est au-dessus des autres éléments */
+}
+
+.conteneur-logo {
+    text-align: center;
+    margin-bottom: var(--padding-base);
+    padding: 0 var(--padding-base); /* Padding horizontal pour le logo */
+}
+
+.lien-logo {
+    display: block;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border: 3px solid var(--primary-color); /* Bordure du logo */
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.conteneur-logo h2 {
+    font-size: 1.5em;
+    color: var(--primary-color);
+    margin: 0;
+    font-weight: bold;
+}
+
+.navigation-principale ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navigation-principale li {
+    margin-bottom: 5px; /* Petit espace entre les éléments de navigation */
+}
+
+.navigation-principale a {
+    display: flex;
+    align-items: center;
+    padding: 12px var(--padding-base); /* Padding pour les liens de navigation */
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0; /* Bordures arrondies à droite */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    position: relative;
+    font-weight: 500;
+}
+
+.navigation-principale a:hover {
+    background-color: var(--primary-color); /* Couleur principale au survol */
+    color: #fff;
+    transform: translateX(5px); /* Léger décalage au survol */
+}
+
+.navigation-principale a.actif {
+    background-color: var(--primary-color); /* Couleur principale pour le lien actif */
+    color: #fff;
+    font-weight: bold;
+    box-shadow: 3px 0 8px rgba(0, 0, 0, 0.2); /* Ombre pour le lien actif */
+}
+
+.navigation-principale a i {
+    margin-right: 12px;
+    font-size: 1.2em;
+}
+
+.navigation-principale a.deconnexion-btn {
+    margin-top: var(--padding-base); /* Marge supérieure pour le bouton de déconnexion */
+    background-color: var(--error-color); /* Couleur d'erreur pour déconnexion */
+    color: white;
+}
+
+.navigation-principale a.deconnexion-btn:hover {
+    background-color: #c82333; /* Rouge plus foncé au survol */
+    opacity: 0.9;
+}
+
+.compteur-non-lu {
+    background-color: var(--error-color); /* Rouge pour les compteurs non lus */
+    color: white;
+    font-size: 0.75em;
+    padding: 3px 8px;
+    border-radius: 12px; /* Plus arrondi */
+    margin-left: auto; /* Pousse le compteur à droite */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px; /* Taille minimale pour un look cohérent */
+    height: 24px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+/* --- Contenu Principal --- */
+.contenu-principal {
+    flex-grow: 1; /* Prend tout l'espace restant horizontalement */
+    padding: var(--padding-base);
+    background-color: var(--background-light); /* Couleur de fond du contenu principal */
+}
+
+.entete-tableau-bord {
+    background-color: #fff;
+    padding: var(--padding-base);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--padding-base);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.entete-tableau-bord h1 {
+    font-size: 2.2em;
+    margin: 0;
+    color: var(--primary-color);
+}
+
+.texte-bienvenue {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+/* --- Messages (Succès/Erreur/Info) --- */
+.message {
+    padding: 12px 20px;
+    border-radius: var(--border-radius);
+    margin-bottom: var(--padding-base);
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    animation: fadeIn 0.5s ease-out; /* Animation d'apparition */
+}
+
+.message i {
+    margin-right: 10px;
+    font-size: 1.3em;
+}
+
+.message-succes {
+    background-color: #d4edda;
+    color: var(--success-color);
+    border: 1px solid #c3e6cb;
+}
+
+.message-erreur {
+    background-color: #f8d7da;
+    color: var(--error-color);
+    border: 1px solid #f5c6cb;
+}
+
+.message-info {
+    background-color: #d1ecf1;
+    color: var(--info-color);
+    border: 1px solid #bee5eb;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Sections Générales --- */
+.section-tableau-bord {
+    background-color: #fff;
+    padding: var(--padding-base);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--padding-base);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.titre-section {
+    font-size: 2em;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+    font-weight: 600;
+}
+
+.description-section {
+    margin-bottom: 20px;
+    color: var(--text-light-color);
+    font-size: 0.95em;
+}
+
+/* --- Boutons d'action (Ajout/Génériques) --- */
+.bouton-ajout,
+.bouton-envoyer { /* Appliquer le même style de base aux boutons d'ajout et d'envoi */
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-bottom: var(--gap-base); /* Pour les boutons en haut de section */
+    font-size: 1em;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.bouton-ajout:hover,
+.bouton-envoyer:hover {
+    background-color: #924a29; /* Couleur primaire légèrement plus foncée */
+    transform: translateY(-2px);
+}
+
+.bouton-ajout i,
+.bouton-envoyer i {
+    margin-right: 8px;
+}
+
+/* --- Grille de Statistiques --- */
+.grille-statistiques {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Min 220px, auto-fit pour l'ajustement */
+    gap: var(--gap-base);
+    margin-bottom: var(--padding-base);
+}
+
+.carte-statistique {
+    background-color: #fefefe;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-left: 6px solid var(--primary-color); /* Bordure accentuée sur le côté */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.carte-statistique:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.carte-statistique h3 {
+    font-size: 1.2em;
+    color: var(--text-light-color);
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.carte-statistique p {
+    font-size: 2.8em; /* Grande taille pour le nombre */
+    font-weight: bold;
+    color: var(--primary-color);
+    line-height: 1; /* Réduit l'espace vertical */
+}
+
+/* --- Tables --- */
+.table-responsive {
+    overflow-x: auto; /* Permet le défilement horizontal sur les petits écrans */
+    -webkit-overflow-scrolling: touch; /* Améliore le défilement sur iOS */
+    border-radius: var(--border-radius); /* Applique le rayon aux coins du conteneur */
+    border: 1px solid var(--border-color);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0; /* Plus de marge supérieure car enveloppé dans table-responsive */
+    background-color: #fff;
+    /* Supprimez border-radius et overflow: hidden ici, ils sont sur .table-responsive */
+}
+
+table thead {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+table th,
+table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee; /* Bordure plus claire pour les lignes */
+}
+
+table th {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    white-space: nowrap; /* Empêche les en-têtes de se casser sur plusieurs lignes */
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tbody tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+.table-image-cell img {
+    width: 60px; /* Taille légèrement plus grande pour les images */
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+    vertical-align: middle;
+    border: 1px solid var(--border-color);
+}
+
+.actions {
+    white-space: nowrap; /* Empêche les boutons d'action de se briser sur plusieurs lignes */
+    display: flex;
+    gap: 8px; /* Espacement entre les boutons d'action */
+    flex-wrap: wrap; /* Permet aux actions de s'enrouler sur plusieurs lignes si l'espace est limité */
+    justify-content: flex-start;
+}
+
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 12px;
+    border-radius: 6px; /* Plus arrondi que 4px */
+    text-decoration: none;
+    font-size: 0.9em;
+    font-weight: 500;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.action-btn i {
+    margin-right: 6px;
+}
+
+.modifier-btn {
+    background-color: var(--info-color);
+    color: white;
+}
+.modifier-btn:hover {
+    background-color: #138496; /* Version plus foncée de info-color */
+    transform: translateY(-1px);
+}
+
+.supprimer-btn {
+    background-color: var(--error-color);
+    color: white;
+}
+.supprimer-btn:hover {
+    background-color: #c82333; /* Version plus foncée de error-color */
+    transform: translateY(-1px);
+}
+
+.gerer-invites-btn {
+    background-color: #007bff; /* Bleu standard */
+    color: white;
+}
+.gerer-invites-btn:hover {
+    background-color: #0069d9; /* Bleu plus foncé */
+    transform: translateY(-1px);
+}
+
+.lire-btn {
+    background-color: var(--success-color);
+    color: white;
+}
+.lire-btn:hover {
+    background-color: #218838; /* Vert plus foncé */
+    transform: translateY(-1px);
+}
+
+/* Tags de statut */
+.role-tag,
+.statut-tag,
+.statut-disponible,
+.statut-non-disponible,
+.statut-message,
+.statut-rsvp {
+    padding: 5px 10px;
+    border-radius: 15px; /* Très arrondi pour un look de "pill" */
+    font-size: 0.75em;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block; /* Pour un padding correct */
+}
+
+.role-admin { background-color: var(--primary-color); }
+.role-client { background-color: #6c757d; /* Gris */ }
+
+.statut-disponible { background-color: var(--success-color); }
+.statut-non-disponible { background-color: var(--error-color); }
+
+.statut-lu { background-color: var(--success-color); }
+.statut-non_lu { background-color: var(--error-color); }
+.message-non-lu-row {
+    background-color: #fffde7; /* Jaune très clair pour la ligne entière */
+    border-left: 4px solid var(--warning-color);
+}
+
+
+.statut-rsvp-confirme { background-color: var(--success-color); }
+.statut-rsvp-en-attente { background-color: var(--info-color); }
+.statut-rsvp-refuse { background-color: var(--error-color); }
+
+
+/* --- Conversations Section --- */
+.conversation-container {
+    display: flex;
+    gap: var(--gap-base);
+    min-height: 600px; /* Hauteur minimale pour la zone de conversation */
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.liste-clients {
+    flex: 0 0 320px; /* Largeur fixe pour la liste des clients */
+    border-right: 1px solid var(--border-color);
+    padding: 15px 0; /* Padding vertical, horizontal géré par les liens */
+    overflow-y: auto;
+    background-color: #fdfdfd;
+}
+
+.liste-clients h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    padding: 0 var(--padding-base); /* Padding horizontal pour le titre */
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.liste-clients ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.liste-clients li {
+    margin-bottom: 2px; /* Petit espace entre les clients */
+}
+
+.liste-clients a {
+    display: flex;
+    flex-direction: column;
+    padding: 12px var(--padding-base);
+    border-radius: 0; /* Pas de bordures sur les côtés pour la liste */
+    text-decoration: none;
+    color: var(--text-color);
+    transition: background-color 0.2s ease, color 0.2s ease;
+    border-left: 3px solid transparent; /* Pour l'indicateur actif */
+}
+
+.liste-clients a:hover {
+    background-color: #f0f0f0;
+}
+
+.liste-clients a.selected { /* Couleur pour le client sélectionné */
+    background-color: var(--primary-color);
+    color: white;
+    border-left-color: var(--accent-color); /* Bordure accentuée pour le client actif */
+    font-weight: bold;
+}
+
+.liste-clients a.selected small {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.client-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    width: 100%;
+}
+
+.liste-clients a small {
+    font-size: 0.85em;
+    color: var(--text-light-color);
+    margin-top: 4px;
+    align-self: flex-start; /* Aligner la date à gauche */
+}
+
+.zone-discussion {
+    flex-grow: 1; /* Prend l'espace restant */
+    display: flex;
+    flex-direction: column;
+    padding: 0; /* Padding géré par les éléments internes */
+}
+
+.entete-conversation {
+    padding: 15px var(--padding-base);
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+    border-top-right-radius: var(--border-radius);
+    font-size: 1.1em;
+}
+
+.messages-historique {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: var(--padding-base);
+    background-color: var(--background-light);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.message-bulle {
+    max-width: 75%; /* Largeur max des bulles */
+    padding: 12px 18px;
+    border-radius: 20px; /* Très arrondi */
+    margin-bottom: 10px;
+    position: relative;
+    word-wrap: break-word; /* Gère les longs mots */
+    line-height: 1.5;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    animation: slideIn 0.3s ease-out;
+}
+
+.message-bulle p {
+    margin: 0; /* Supprime le margin par défaut du paragraphe */
+}
+
+.message-bulle .message-date {
+    display: block;
+    font-size: 0.75em;
+    color: rgba(0, 0, 0, 0.6);
+    margin-top: 5px;
+    text-align: right;
+}
+
+.message-moi { /* Messages envoyés par l'admin */
+    background-color: var(--primary-color);
+    color: white;
+    align-self: flex-end; /* Aligné à droite */
+    border-bottom-right-radius: 8px; /* Léger ajustement pour l'angle */
+}
+
+.message-moi .message-date {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.message-autre { /* Messages envoyés par le client */
+    background-color: #e9ecef; /* Gris clair */
+    color: var(--text-color);
+    align-self: flex-start; /* Aligné à gauche */
+    border-bottom-left-radius: 8px; /* Léger ajustement pour l'angle */
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.form-envoyer-message {
+    padding: var(--padding-base);
+    background-color: #fff;
+    display: flex;
+    gap: 10px;
+    border-top: 1px solid var(--border-color);
+    border-bottom-right-radius: var(--border-radius); /* Bordure en bas à droite */
+    border-bottom-left-radius: var(--border-radius); /* Bordure en bas à gauche */
+}
+
+.form-envoyer-message textarea {
+    flex-grow: 1;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-family: var(--font-family);
+    resize: vertical;
+    min-height: 60px;
+    max-height: 150px;
+    font-size: 1em;
+}
+
+.bouton-envoyer {
+    margin-bottom: 0; /* Pas de marge en bas dans le formulaire d'envoi */
+    padding: 12px 25px;
+    font-size: 1.1em;
+}
+
+/* --- Horizontal Rule (Séparateur) --- */
+hr {
+    border: none;
+    border-top: 1px dashed var(--border-color); /* Séparateur plus subtil */
+    margin: var(--padding-base) 0;
+}
+
+
+/* --- Media Queries for Responsiveness --- */
+
+/* Pour les tablettes et petits ordinateurs portables */
+@media (max-width: 1200px) {
+    .barre-laterale {
+        width: 250px;
+    }
+    .entete-tableau-bord h1 {
+        font-size: 2em;
+    }
+    .carte-statistique h3 {
+        font-size: 1.1em;
+    }
+    .carte-statistique p {
+        font-size: 2.5em;
+    }
+    .titre-section {
+        font-size: 1.8em;
+    }
+    .liste-clients {
+        flex: 0 0 280px;
+    }
+}
+
+@media (max-width: 992px) {
+    .barre-laterale {
+        width: 220px;
+    }
+    .navigation-principale a {
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+    .navigation-principale a i {
+        margin-right: 10px;
+    }
+    .contenu-principal {
+        padding: 15px;
+    }
+    .entete-tableau-bord {
+        padding: 15px;
+    }
+    .entete-tableau-bord h1 {
+        font-size: 1.8em;
+    }
+    .texte-bienvenue {
+        font-size: 0.95em;
+    }
+    .grille-statistiques {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 15px;
+    }
+    .carte-statistique {
+        padding: 15px;
+    }
+    .carte-statistique h3 {
+        font-size: 1em;
+    }
+    .carte-statistique p {
+        font-size: 2.2em;
+    }
+    .table-responsive {
+        margin-top: 10px;
+    }
+    table th, table td {
+        padding: 10px 12px;
+        font-size: 0.9em;
+    }
+    .action-btn {
+        padding: 6px 10px;
+        font-size: 0.8em;
+    }
+    .conversation-container {
+        flex-direction: column; /* Stack client list and chat area on smaller screens */
+        min-height: auto; /* Permet à la hauteur de s'adapter */
+    }
+    .liste-clients {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        border-radius: var(--border-radius); /* Arrondi les coins du conteneur */
+        padding-top: 0; /* Réinitialise le padding-top pour éviter l'espace excessif si titre a un padding */
+    }
+    .liste-clients h3 {
+        padding-top: var(--padding-base); /* Ajoute le padding au titre si nécessaire */
+    }
+    .liste-clients a {
+        padding: 10px 15px;
+        border-radius: var(--border-radius);
+        margin: 5px 10px; /* Ajoute une marge pour les éléments de liste une fois empilés */
+        border-left: none; /* Supprime la bordure gauche quand empilé */
+    }
+    .liste-clients a.selected {
+        border-left: none; /* Supprime la bordure gauche quand empilé */
+    }
+    .zone-discussion {
+        border-top-left-radius: 0; /* Supprime le rayon du haut gauche */
+        border-top-right-radius: 0; /* Supprime le rayon du haut droit */
+    }
+    .entete-conversation {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+    .form-envoyer-message {
+        border-bottom-left-radius: var(--border-radius);
+        border-bottom-right-radius: var(--border-radius);
+    }
+}
+
+/* Pour les téléphones mobiles */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column; /* La sidebar passe au-dessus du contenu */
+    }
+
+    .barre-laterale {
+        width: 100%;
+        height: auto;
+        position: relative;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 10px 0;
+    }
+
+    .conteneur-logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .conteneur-logo h2 {
+        margin-left: 15px;
+        font-size: 1.3em;
+    }
+    .logo {
+        width: 60px;
+        height: 60px;
+    }
+
+    .navigation-principale ul {
+        display: flex;
+        flex-wrap: wrap; /* Permet aux éléments de passer à la ligne */
+        justify-content: center;
+        gap: 8px; /* Espace entre les boutons */
+        padding: 10px; /* Padding pour les éléments de navigation */
+    }
+    .navigation-principale li {
+        margin-bottom: 0;
+    }
+    .navigation-principale a {
+        padding: 8px 12px;
+        font-size: 0.85em;
+        flex-direction: column; /* Empile icône et texte */
+        text-align: center;
+        border-radius: var(--border-radius); /* Tous les coins arrondis */
+    }
+    .navigation-principale a i {
+        margin-right: 0;
+        margin-bottom: 5px;
+        font-size: 1.1em;
+    }
+    .navigation-principale a.deconnexion-btn {
+        margin-top: 0;
+    }
+    .compteur-non-lu {
+        position: absolute; /* Positionne le badge au-dessus de l'icône */
+        top: 5px;
+        right: 5px;
+        transform: translate(50%, -50%); /* Ajuste la position */
+        font-size: 0.7em;
+        min-width: 18px;
+        height: 18px;
+    }
+
+    .contenu-principal {
+        padding: 10px;
+    }
+
+    .entete-tableau-bord {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 15px;
+    }
+    .entete-tableau-bord h1 {
+        font-size: 1.6em;
+    }
+    .texte-bienvenue {
+        font-size: 0.9em;
+    }
+
+    .titre-section {
+        font-size: 1.6em;
+        margin-bottom: 10px;
+        padding-bottom: 8px;
+    }
+    .description-section {
+        font-size: 0.9em;
+        margin-bottom: 15px;
+    }
+
+    .grille-statistiques {
+        grid-template-columns: 1fr; /* Une seule colonne sur mobile */
+        gap: 10px;
+    }
+    .carte-statistique {
+        padding: 12px;
+    }
+    .carte-statistique p {
+        font-size: 2em;
+    }
+
+    .bouton-ajout {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 15px;
+        padding: 10px;
+    }
+
+    .table-responsive {
+        border-radius: var(--border-radius); /* Assure les bords arrondis */
+    }
+    table th, table td {
+        padding: 8px;
+        font-size: 0.85em;
+    }
+
+    .actions {
+        flex-direction: column; /* Empile les boutons d'action verticalement */
+        gap: 5px;
+        align-items: flex-start;
+    }
+
+    .action-btn {
+        font-size: 0.8em;
+        padding: 5px 10px;
+        width: 100%; /* Les boutons prennent toute la largeur disponible */
+        justify-content: center;
+    }
+
+    .table-image-cell img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .conversation-container {
+        padding: 0; /* Remove padding from container */
+        border-radius: var(--border-radius);
+    }
+    .liste-clients {
+        padding: 10px 0; /* Adjust padding for mobile list */
+        border-bottom: 1px solid var(--border-color);
+    }
+    .liste-clients h3 {
+        padding: 0 15px;
+    }
+    .liste-clients a {
+        padding: 10px 15px;
+    }
+    .zone-discussion {
+        padding: 0; /* Remove padding from zone-discussion */
+    }
+    .entete-conversation {
+        padding: 12px 15px;
+        font-size: 1em;
+    }
+    .messages-historique {
+        padding: 15px;
+    }
+    .message-bulle {
+        max-width: 95%; /* Allow messages to take more width */
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+    .form-envoyer-message {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+    }
+    .form-envoyer-message textarea {
+        min-height: 80px;
+    }
+    .bouton-envoyer {
+        width: 100%;
+        padding: 10px;
+        font-size: 1em;
+    }
+}
+
+/* For even smaller screens like iPhone SE */
+@media (max-width: 480px) {
+    .navigation-principale a {
+        font-size: 0.75em;
+        padding: 6px 8px;
+    }
+    .conteneur-logo h2 {
+        font-size: 1.1em;
+    }
+    .logo {
+        width: 50px;
+        height: 50px;
+    }
+    .carte-statistique p {
+        font-size: 1.8em;
+    }
+    .titre-section {
+        font-size: 1.4em;
+    }
+    table th, table td {
+        font-size: 0.8em;
+    }
+    .statut-tag, .statut-rsvp {
+        font-size: 0.65em;
+        padding: 4px 8px;
+    }
+    .message-bulle {
+        font-size: 0.85em;
+    }
+}

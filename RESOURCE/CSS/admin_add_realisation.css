@@ -1,0 +1,160 @@
+ /* Styles spécifiques pour cette page simplifiée */
+        :root {
+            --rose-fuchsia:#E91E89;
+            --noir:#000000;
+            --gris-fonce:#4b4949;
+            --gris-clair: #cccccc;
+            --vert-vif:#8CC63F;
+            --blanc:#FFFFFF;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f8;
+            color: var(--gris-fonce);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Pour centrer le contenu verticalement */
+            box-sizing: border-box;
+        }
+
+        .container {
+            background-color: var(--blanc);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 600px; /* Largeur maximale pour le formulaire */
+            box-sizing: border-box;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--gris-clair);
+            flex-wrap: wrap;
+        }
+
+        .header h1 {
+            margin: 0;
+            color: var(--rose-fuchsia);
+            font-size: 1.8em;
+        }
+
+        .header .btn-back,
+        .header .btn-logout {
+            background-color: var(--gris-fonce);
+            color: var(--blanc);
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.3s ease;
+            margin-left: 10px; /* Espace entre les boutons */
+        }
+
+        .header .btn-back:hover,
+        .header .btn-logout:hover {
+            background-color: var(--rose-fuchsia);
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--gris-fonce);
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="date"], /* Type date pour la date de réalisation */
+        .form-group textarea,
+        .form-group select,
+        .form-group input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--gris-clair);
+            border-radius: 6px;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-group button {
+            background-color: var(--vert-vif);
+            color: var(--blanc);
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .form-group button:hover {
+            background-color: #7BB232;
+        }
+
+        .message {
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .message-succes {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message-erreur {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Media Queries pour la responsivité */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                border-radius: 0;
+                box-shadow: none;
+            }
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .header h1 {
+                margin-bottom: 15px;
+            }
+            .header .btn-back,
+            .header .btn-logout {
+                margin-left: 0;
+                width: 100%;
+                text-align: center;
+                justify-content: center;
+                margin-top: 10px;
+            }
+        }

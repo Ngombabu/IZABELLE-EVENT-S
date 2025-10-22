@@ -1,0 +1,192 @@
+
+        /* Styles communs à l'administration, potentiellement déjà dans style.css */
+        :root {
+            --rose-fuchsia:#E91E89;
+            --noir:#000000;
+            --gris-fonce:#4b4949;
+            --gris-clair: #cccccc;
+            --vert-vif:#8CC63F;
+            --blanc:#FFFFFF;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f8;
+            color: var(--gris-fonce);
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            background-color: var(--blanc);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 1200px; /* Plus large pour le tableau des invités */
+            margin: 20px auto;
+            box-sizing: border-box;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--gris-clair);
+            flex-wrap: wrap;
+        }
+
+        .header h1 {
+            margin: 0;
+            color: var(--rose-fuchsia);
+            font-size: 1.8em;
+        }
+
+        .header .btn-back,
+        .header .btn-add { /* Nouveau style pour le bouton d'ajout */
+            background-color: var(--gris-fonce);
+            color: var(--blanc);
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.3s ease;
+            margin-left: 10px;
+        }
+
+        .header .btn-add {
+             background-color: var(--vert-vif); /* Couleur différente pour l'ajout */
+        }
+
+        .header .btn-back:hover,
+        .header .btn-add:hover {
+            background-color: var(--rose-fuchsia);
+        }
+
+        .message {
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .message-succes {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message-erreur {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table thead th {
+            background-color: var(--rose-fuchsia);
+            color: var(--blanc);
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        table tbody td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #ddd;
+            vertical-align: middle;
+        }
+
+        table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .actions a {
+            margin-right: 10px;
+            color: var(--gris-fonce);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .actions a:hover {
+            color: var(--rose-fuchsia);
+        }
+
+        .actions .supprimer {
+            color: #dc3545; /* Rouge pour supprimer */
+        }
+        .actions .supprimer:hover {
+            color: #bd2130;
+        }
+
+        /* Media Queries pour la responsivité */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+            tbody tr {
+                margin-bottom: 15px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            }
+            tbody td {
+                border: none;
+                position: relative;
+                padding-left: 50%;
+                text-align: right;
+            }
+            tbody td:before {
+                content: attr(data-label);
+                position: absolute;
+                left: 10px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                text-align: left;
+                font-weight: bold;
+                color: var(--gris-fonce);
+            }
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .header h1 {
+                margin-bottom: 15px;
+                font-size: 1.5em;
+            }
+            .header .btn-back,
+            .header .btn-add {
+                margin-left: 0;
+                width: 100%;
+                text-align: center;
+                justify-content: center;
+                margin-top: 10px;
+            }
+        }

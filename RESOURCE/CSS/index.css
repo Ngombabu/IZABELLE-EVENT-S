@@ -1,0 +1,607 @@
+:root {
+  --rose-fuchsia:#E91E89;
+  --noir:#000000;
+  --gris-fonce:#4b4949;
+  --gris-clair: #cccccc; /* Ajouté pour les bordures */
+  --gris-fonce1: hsla(328, 82%, 52%, 0.5); /* Couleur originale pour le fond animé */
+  --vert-vif:#8CC63F;          
+  --blanc:#FFFFFF;
+  /* Couleurs pour les boutons sociaux */
+  --bleu-facebook: #3b5998;
+  --rouge-google: #dd4b39;
+}
+
+/* Réinitialisation de base */
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+
+
+body {
+    font-family: Arial, sans-serif;
+    color: var(--noir); /* Couleur de texte par défaut */
+    line-height: 1.6;
+}
+
+/* En-tête */
+header {
+  background-color: var(--blanc);
+  color: var(--gris-fonce);
+  border-bottom: 1px solid var(--gris-clair); /* Bordure plus douce */
+  padding: 10px 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Légère ombre */
+}
+header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Espace entre les éléments */
+  max-width: 1200px; /* Largeur max pour le contenu */
+  margin: 0 auto; /* Centrage */
+  padding: 0 20px; /* Padding latéral */
+}
+header nav {
+  flex-grow: 1; /* Permet à la nav de prendre l'espace disponible */
+  text-align: center;
+}
+header nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center; /* Centre les éléments de la nav */
+  gap: 30px; /* Espacement entre les liens */
+}
+header nav a{
+  color: var(--gris-fonce);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1em; /* Taille de police légèrement ajustée */
+  padding: 5px 0; /* Padding vertical pour le survol */
+  position: relative; /* Pour l'underline animé */
+}
+header nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -3px;
+    left: 0;
+    background-color: var(--rose-fuchsia);
+    transition: width 0.3s ease-in-out;
+}
+header nav a:hover::after {
+    width: 100%;
+}
+header img.logo {
+  width: 70px; /* Taille légèrement réduite */
+  height:auto;
+  margin-right: 20px; /* Espacement à droite du logo */
+}
+
+/* Section d'accueil (Niveaux1) */
+.niveaux1{
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centre le contenu horizontalement */
+  min-height: 90vh; /* Minimum height */
+  background: linear-gradient(45deg, var(--rose-fuchsia), var(--vert-vif)); /* Animation de fond */
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+  padding: 50px 20px; /* Padding global pour la section */
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.niveaux1 form {
+  background-color: var(--blanc);
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px; /* Plus large pour le formulaire */
+  box-sizing: border-box;
+  text-align: left; /* Aligne le texte du formulaire à gauche */
+  position: relative;
+  z-index: 2; /* S'assure que le formulaire est au-dessus de l'image */
+  margin: 0; /* Réinitialise les marges du formulaire */
+  border-left: none; /* Supprime la bordure gauche */
+  border-radius: 10px; /* Retour à un border-radius simple */
+}
+
+.niveaux1 form h1 {
+  font-size: 2.5em; /* Taille du titre ajustée */
+  color: var(--rose-fuchsia);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.niveaux1 form .para p {
+    margin-bottom: 25px;
+    color: var(--gris-fonce);
+    text-align: center;
+    font-size: 1.1em;
+}
+
+.niveaux1 form .i {
+  display: flex;
+  flex-direction: column; /* Empile les inputs verticalement */
+  gap: 15px; /* Espace entre les groupes d'input */
+  margin-bottom: 20px;
+}
+
+.niveaux1 form .i div {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative; /* Pour positionner l'icône */
+}
+
+.niveaux1 form .i i {
+  position: absolute;
+  right: 10px;
+  color: var(--gris-fonce);
+  font-size: 1.2em;
+}
+
+.niveaux1 form input[type="text"],
+.niveaux1 form input[type="email"],
+.niveaux1 form input[type="tel"]{
+  width: 100%;
+  padding: 12px 15px; /* Padding augmenté */
+  padding-right: 40px; /* Espace pour l'icône */
+  border: 1px solid var(--gris-clair);
+  border-radius: 5px;
+  font-size: 1em;
+  color: var(--noir);
+  background-color: var(--blanc);
+}
+
+.niveaux1 form input[type="text"]:focus,
+.niveaux1 form input[type="email"]:focus,
+.niveaux1 form input[type="tel"]:focus{
+  border-color: var(--rose-fuchsia);
+  outline: none;
+  box-shadow: 0 0 5px rgba(233, 30, 137, 0.2);
+}
+
+.niveaux1 form button[type="submit"] {
+  background-color: var(--vert-vif); /* Bouton d'action principale en vert vif */
+  color: var(--blanc);
+  border: none;
+  padding: 12px 25px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2em;
+  width: 100%;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 15px;
+}
+
+.niveaux1 form button[type="submit"]:hover {
+  background-color: #72a333; /* Vert plus foncé au survol */
+  transform: translateY(-2px);
+}
+
+/* Styles pour les liens sociaux dans le formulaire */
+.niveaux1 form p a {
+    font-size: 1.2em; /* Taille de police pour les icônes */
+    margin: 0 10px; /* Espacement entre les icônes */
+    display: inline-flex; /* Permet d'aligner l'icône et le texte si on en ajoute */
+    align-items: center;
+    color: var(--rose-fuchsia); /* Couleur des icônes sociales */
+    transition: transform 0.2s ease-in-out;
+}
+.niveaux1 form p a:hover {
+    transform: scale(1.1);
+}
+.niveaux1 form p {
+    text-align: center;
+    margin-top: 25px;
+    color: var(--gris-fonce);
+    font-size: 1em;
+}
+
+/* Image d'arrière-plan dans Niveaux1 */
+.niveaux1 .image-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1; /* Reste en arrière-plan */
+    overflow: hidden; /* Cache les débordements de l'image */
+}
+.niveaux1 .image-accueil {
+    width: 60%; /* Ajustez la taille de l'image de fond */
+    height: auto;
+    max-width: 800px; /* Limite la taille max */
+    opacity: 0.1; /* Transparence pour le filigrane */
+    pointer-events: none; /* Permet de cliquer à travers */
+}
+
+/* Sections de service */
+section {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: var(--blanc);
+}
+
+section h2 {
+    color: var(--rose-fuchsia);
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    position: relative;
+}
+section h2::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background-color: var(--vert-vif);
+    margin: 10px auto 0;
+}
+
+.grille-services,
+.galerie-realisations {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 3 colonnes sur grand écran */
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.service,
+.realisation-item {
+    background-color: var(--blanc);
+    border: 1px solid var(--gris-clair);
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+.service:hover,
+.realisation-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.service img,
+.realisation-item img {
+    width: 100%;
+    height: 200px; /* Hauteur fixe pour les images de service/réalisation */
+    object-fit: cover; /* Recadre l'image pour couvrir le cadre */
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.service h3 {
+    color: var(--gris-fonce);
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+.service p {
+    color: var(--gris-fonce);
+    font-size: 1em;
+}
+
+/* Styles pour les boutons sociaux individuels (si utilisés hors du formulaire de connexion) */
+.boutons-sociaux {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.bouton-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    color: var(--blanc);
+    text-decoration: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.bouton-social i {
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+.bouton-facebook {
+    background-color: var(--bleu-facebook);
+}
+
+.bouton-facebook:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.bouton-google {
+    background-color: var(--rouge-google);
+}
+
+.bouton-google:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+/* Pied de page (exemple, à développer si besoin) */
+footer {
+    background-color: var(--noir);
+    color: var(--blanc);
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .niveaux1 form {
+        max-width: 90%;
+        padding: 30px;
+    }
+    .niveaux1 .image-accueil {
+        width: 80%; /* Plus grande sur les tablettes */
+    }
+    .grille-services,
+    .galerie-realisations {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 2 colonnes sur tablette */
+    }
+}
+
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    header nav ul {
+        flex-wrap: wrap; /* Permet aux liens de passer à la ligne */
+        margin-top: 15px;
+    }
+    header img.logo {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    .niveaux1 {
+        flex-direction: column; /* Empile le formulaire et l'image */
+        padding: 40px 15px;
+        min-height: auto; /* Laisse la hauteur s'adapter */
+    }
+    .niveaux1 form {
+        margin-top: 0;
+        padding: 25px;
+    }
+    .niveaux1 form h1 {
+        font-size: 2em;
+    }
+    .niveaux1 .image-container {
+        position: static; /* Retire le positionnement absolu pour le flux normal */
+        width: 100%;
+        margin-top: 30px; /* Espace après le formulaire */
+    }
+    .niveaux1 .image-accueil {
+        width: 90%; /* Adapte l'image à la largeur mobile */
+        max-width: 400px;
+        opacity: 0.15; /* Un peu plus visible sur mobile */
+    }
+    section {
+        padding: 40px 15px;
+    }
+    section h2 {
+        font-size: 2em;
+    }
+    .grille-services,
+    .galerie-realisations {
+        grid-template-columns: 1fr; /* Une seule colonne sur mobile */
+    }
+    .service,
+    .realisation-item {
+        padding: 20px;
+    }
+    .service img,
+    .realisation-item img {
+        height: 180px;
+    }
+    .service h3 {
+        font-size: 1.5em;
+    }
+}
+
+
+/* --- HEADER --- */
+header {
+  background-color: var(--blanc);
+  border-bottom: 1px solid var(--gris-clair); /* Bordure plus douce */
+  padding: 10px 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Légère ombre */
+}
+header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Espace entre les éléments */
+  max-width: 1200px; /* Largeur max pour le contenu */
+  margin: 0 auto; /* Centrage */
+  padding: 0 20px; /* Padding latéral */
+}
+header img.logo {
+  width: 70px; /* Taille légèrement réduite */
+  height:auto;
+  margin-right: 20px; /* Espacement à droite du logo */
+}
+
+/* --- NAVIGATION --- */
+header nav {
+  flex-grow: 1; /* Permet à la nav de prendre l'espace disponible */
+  text-align: center;
+}
+header nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center; /* Centre les éléments de la nav */
+  gap: 30px; /* Espacement entre les liens */
+}
+header nav a{
+  color: var(--gris-fonce);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1em; /* Taille de police légèrement ajustée */
+  padding: 5px 0; /* Padding vertical pour le survol */
+  position: relative; /* Pour l'underline animé */
+}
+header nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -3px;
+    left: 0;
+    background-color: var(--rose-fuchsia);
+    transition: width 0.3s ease-in-out;
+}
+header nav a:hover::after {
+    width: 100%;
+}
+
+/* --- BOUTONS CONTACT ET AUTHENTIFICATION --- */
+.chris {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Espacement entre le bouton de contact et le groupe d'authentification */
+}
+
+.bouton-contact {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--gris-fonce);
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 8px 15px;
+    border: 1px solid var(--gris-clair); /* Bordure douce */
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.bouton-contact i {
+    margin-right: 8px;
+    color: var(--vert-vif); /* Icône WhatsApp en vert vif */
+}
+
+.bouton-contact:hover {
+    background-color: var(--vert-vif);
+    color: var(--blanc);
+    border-color: var(--vert-vif);
+}
+.bouton-contact:hover i {
+    color: var(--blanc);
+}
+
+.groupe-auth {
+    display: flex;
+    gap: 10px; /* Espace entre les boutons Connexion et Inscription */
+}
+
+.bouton-auth {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.bouton-auth i {
+    margin-right: 8px;
+}
+
+/* Style spécifique pour le bouton Connexion */
+.bouton-auth.connexion {
+    color: var(--rose-fuchsia);
+    border: 1px solid var(--rose-fuchsia);
+    background-color: transparent;
+}
+.bouton-auth.connexion i {
+    color: var(--rose-fuchsia);
+}
+.bouton-auth.connexion:hover {
+    background-color: var(--rose-fuchsia);
+    color: var(--blanc);
+}
+.bouton-auth.connexion:hover i {
+    color: var(--blanc);
+}
+
+/* Style spécifique pour le bouton Inscription */
+.bouton-auth.inscription {
+    background-color: var(--rose-fuchsia);
+    color: var(--blanc);
+    border: 1px solid var(--rose-fuchsia);
+}
+.bouton-auth.inscription i {
+    color: var(--blanc);
+}
+.bouton-auth.inscription:hover {
+    background-color: #d11c7b; /* Teinte plus foncée au survol */
+    border-color: #d11c7b;
+}
+
+
+/* --- MEDIA QUERIES (pour la responsivité du header) --- */
+@media (max-width: 900px) {
+    header .container {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px; /* Espacement entre les blocs empilés */
+    }
+    header nav ul {
+        flex-wrap: wrap; /* Permet aux liens de passer à la ligne */
+        justify-content: center;
+        margin-top: 10px;
+    }
+    header img.logo {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    .chris {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%; /* S'assure que les boutons prennent toute la largeur */
+    }
+    .bouton-contact,
+    .groupe-auth,
+    .bouton-auth {
+        width: 100%; /* Rend les boutons pleine largeur sur mobile */
+    }
+    .groupe-auth {
+        flex-direction: column; /* Empile Connexion et Inscription */
+    }
+}
+
+@media (max-width: 480px) {
+    header nav ul {
+        gap: 15px; /* Réduit l'espacement sur très petits écrans */
+    }
+    .bouton-contact,
+    .bouton-auth {
+        font-size: 1em; /* Texte légèrement plus petit */
+        padding: 10px;
+    }
+}
